@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
@@ -30,7 +32,8 @@ public class UserModel {
 	@Column(nullable = false, length = 100, unique = true)
 	private String email;
 	
-	@OneToMany(targetEntity = PostModel.class)
+	@OneToMany(targetEntity = PostModel.class, mappedBy = "user")
+	@JsonManagedReference
 	private List<PostModel> post;
 
 	public long getId() {
